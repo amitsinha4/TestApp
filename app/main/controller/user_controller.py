@@ -7,6 +7,7 @@ from ..service.user_service import UserService
 
 api = UserDto.api
 _user = UserDto.user_data
+_create_user = UserDto.create_user
 
 
 @api.route('/')
@@ -20,7 +21,8 @@ class UserList(Resource):
 
     @api.response(201, 'User successfully created.')
     @api.doc('create a new user')
-    @api.expect(_user, validate=True)
+    @api.expect(_create_user, validate=True)
+    @api.marshal_list_with(_user, envelope='data')
     def post(self):
         """Creates a new User """
         data = request.json

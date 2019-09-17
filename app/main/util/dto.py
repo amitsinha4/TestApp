@@ -20,6 +20,12 @@ class UserDto:
         'data': fields.Nested(user)
     })
 
+    create_user = api.model('create_user', {
+        'username': fields.String,
+        'email': fields.String,
+        'password': fields.String
+    })
+
 
 class PageDto:
     """ PageDto """

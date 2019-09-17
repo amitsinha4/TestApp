@@ -10,8 +10,9 @@ from app.main.util.messages import USER_MSG
 
 class UserService():
     """ User Service """
-
-    def save_new_user(self, data):
+    @staticmethod
+    def save_new_user(data):
+        print(data)
         user = User.query.filter_by(email=data['email']).first()
         if not user:
             new_user = User(
@@ -21,11 +22,8 @@ class UserService():
                 password=data['password'],
                 registered_on=datetime.datetime.utcnow()
             )
-            self.save_changes(new_user)
-            # response_object = {
-            #     'status': 'success',
-            #     'message': 'Successfully registered.'
-            # }
+            db.session.add(new_user)
+            db.session.commit()
             return Response(
                 status='Success',
                 message=USER_MSG['USER_SAVED']
@@ -44,8 +42,3 @@ class UserService():
     @staticmethod
     def get_a_user(public_id):
         return User.query.filter_by(public_id=public_id).first()
-
-    @staticmethod
-    def save_changes(data):
-        db.session.add(data)
-        db.session.commit()
