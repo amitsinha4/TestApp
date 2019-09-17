@@ -3,7 +3,7 @@ from flask import request
 from flask_restplus import Resource
 
 from ..util.dto import PageDto
-from app.main.service.page_service import get_page, save_page
+from app.main.service.page_service import PageService
 
 api = PageDto.api
 _page = PageDto.page_of_pages
@@ -15,10 +15,10 @@ class AboutPageAPI(Resource):
     @api.doc('List of pages')
     @api.marshal_with(_page)
     def get(self):
-        return get_page()
+        return PageService.get_page()
 
     @api.expect(_page)
     @api.doc('Save a Page')
     def post(self):
         data = request.json
-        return save_page(data)
+        return PageService.save_page(data)
