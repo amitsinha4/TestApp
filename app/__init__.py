@@ -8,8 +8,8 @@ from .main.controller.page_controller import api as page_ns
 blueprint = Blueprint('api', __name__)
 
 api = Api(blueprint,
-          title='Full Application',
-          version='1.0',
+          title='MyTest Appication',
+          version='1.2.5',
           description='a boilerplate for flask restplus web service'
           )
 

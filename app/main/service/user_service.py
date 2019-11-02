@@ -12,7 +12,7 @@ class UserService():
     """ User Service """
     @staticmethod
     def save_new_user(data):
-        print(data)
+        """ Save new User """
         user = User.query.filter_by(email=data['email']).first()
         if not user:
             new_user = User(
@@ -33,12 +33,15 @@ class UserService():
 
     @staticmethod
     def get_all_users():
+        """ Get all users """
+        user = User.query.all()
         return Response(
             status='Success',
-            data=User.query.all(),
+            data=user,
             message=USER_MSG['USER_FETCH']
         ).__dict__, 200
 
     @staticmethod
     def get_a_user(public_id):
+        """ Get User based on public_id """
         return User.query.filter_by(public_id=public_id).first()

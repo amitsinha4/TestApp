@@ -11,6 +11,7 @@ from app.main.config import basedir
 
 class TestDevelopmentConfig(TestCase):
     """ TestDevelopment Config """
+
     def create_app(self):
         app.config.from_object('app.main.config.DevelopmentConfig')
         return app
@@ -20,12 +21,14 @@ class TestDevelopmentConfig(TestCase):
         self.assertTrue(app.config['DEBUG'] is True)
         self.assertFalse(current_app is None)
         self.assertTrue(
-            app.config['SQLALCHEMY_DATABASE_URI'] == 'sqlite:///' + os.path.join(basedir, 'flask_boilerplate_main.db')
+            app.config['SQLALCHEMY_DATABASE_URI'] == 'sqlite:///' +
+            os.path.join(basedir, 'flask_boilerplate_main.db')
         )
 
 
 class TestTestingConfig(TestCase):
     """ TestTesting Config """
+
     def create_app(self):
         app.config.from_object('app.main.config.TestingConfig')
         return app
@@ -34,12 +37,14 @@ class TestTestingConfig(TestCase):
         self.assertFalse(app.config['SECRET_KEY'] is 'my_precious')
         self.assertTrue(app.config['DEBUG'])
         self.assertTrue(
-            app.config['SQLALCHEMY_DATABASE_URI'] == 'sqlite:///' + os.path.join(basedir, 'flask_boilerplate_test.db')
+            app.config['SQLALCHEMY_DATABASE_URI'] == 'sqlite:///' +
+            os.path.join(basedir, 'flask_boilerplate_test.db')
         )
 
 
 class TestProductionConfig(TestCase):
     """ TestProduction Config """
+
     def create_app(self):
         app.config.from_object('app.main.config.ProductionConfig')
         return app

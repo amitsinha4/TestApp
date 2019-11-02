@@ -10,4 +10,4 @@ class AboutPage(db.Model):
 
     def __repr__(self):
         """Repr Function"""
-        return "<AboutPage {}".format(self.page_name)
+        return "<AboutPage {}>".format(self.page_name)
