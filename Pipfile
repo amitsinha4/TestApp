@@ -15,6 +15,7 @@ pyjwt = "*"
 flask-script = "*"
 flask-testing = "*"
 python-dotenv = "*"
+cherrypy = "*"
 
 [requires]
 python_version = "3.5"

@@ -3,6 +3,7 @@
 from app.main import db
 from app.main.model.page import AboutPage
 from app.main.util.response import Response
+from werkzeug.exceptions import Forbidden
 
 
 class PageService(object):
@@ -20,6 +21,7 @@ class PageService(object):
     @staticmethod
     def get_page():
         """ Getting Page """
+        raise Forbidden
         pages = AboutPage.query.all()
         res = Response('Success', data=pages, message='List of Pages').__dict__
         return res, 200
